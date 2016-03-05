@@ -1,8 +1,18 @@
 #!/bin/bash
 #
 #
-# HANGMAN GAME!
+# A HANGMAN GAME WRITTEN FOR THE BORN AGAIN SHELL!
 #
+# This game was coded for fun while I was trying to learn bash. To play the game
+# ensure that this script has execute permissions and then type ./hangman in the
+# terminal.
+#
+# This game reads a list of words from a dict.dat file in the same directory as
+# the hangman script.
+#
+
+
+#initialize the variables and arrays we need
 declare -a word
 declare -a word_img
 declare -a alpha_img
@@ -13,6 +23,8 @@ correct=0
 alpha=("a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z")
 char=0
 
+#this function reads the list of words from the dict.dat file and
+#put them into the word array
 function readfile
 {
 
@@ -26,6 +38,8 @@ i=`expr $i + 1`
 done
 exec 0<&3
 }
+
+#this function randomly selects a word from the word array.
 function readword {
 	word_index=$RANDOM
 
@@ -41,6 +55,8 @@ function readword {
 	done
 }
 
+#this function solicits a guess from the user and then checks
+#the guess to see if it is valid/correct/incorrect.
 function guess
 {
 	j=0
@@ -71,7 +87,7 @@ function guess
 	done
 }
 
-
+#the following functions draw the gallows and hanged man to the terminal
 function gallows 
 {
 clear
@@ -193,6 +209,8 @@ echo "                   |"
 echo "      _____________|_____"
 echo "                           "
 }
+
+#this function prints the win screen
 function win {
 echo "*     *  *******  *    *  * "
 echo "*     *     *     **   *  * "
@@ -203,10 +221,14 @@ echo "  * *    *******  *    *  * "
 echo -en "\n\n\n"
 }
 
+#this function prints the lose screen
 function lose {
 echo "lose..."
 echo "The word was ${word[$word_index]}"
 }
+
+#this function prints the guessed letters to the screen and
+#underscores for letters that haven't been guessed
 function print_alpha {
 	echo -e "\nLetters Guessed:"
 	
@@ -235,7 +257,8 @@ function print_alpha {
 	char=""
 }
 
-
+#a function to print the correctly guessed letters of the word to the
+#screen or else an underscore for letters no yet guessed
 function print_word {
 	echo -ne "\nWord: "
 	t=0
@@ -253,8 +276,9 @@ function print_word {
 }
 
 
-
-
+#####################################
+# beginning of the main program here!
+#####################################
 
 readfile;
 gameover=0
@@ -280,7 +304,7 @@ do
 	print_alpha;
 	print_word;
 
-
+        #check for winning/losing conditions and update status of hanged man
 	while [[ ! "${numletter}" == "${#word[${word_index}]}" && ! "$incorrect" == "6" ]]
 	do
 		guess;
