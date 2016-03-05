@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 #
-# A HANGMAN GAME WRITTEN FOR THE BORN AGAIN SHELL!
+# A HANGMAN GAME WRITTEN FOR THE BOURNE AGAIN SHELL!
 #
 # This game was coded for fun while I was trying to learn bash. To play the game
 # ensure that this script has execute permissions and then type ./hangman in the
@@ -10,7 +10,11 @@
 # This game reads a list of words from a dict.dat file in the same directory as
 # the hangman script.
 #
-
+# Author: Ashton Seth Reimer
+# Date: Summer 2010
+# License: See the license file included in the repository on github:
+#          https://github.com/asreimer/bash_hangman
+#
 
 #initialize the variables and arrays we need
 declare -a word
