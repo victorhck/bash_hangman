@@ -14,7 +14,9 @@
 # Date: Summer 2010
 # License: See the license file included in the repository on github:
 #          https://github.com/asreimer/bash_hangman
-#
+# ---
+# Date: Fall 2019
+# Forked and modified by Victorhck to add a Spanish and English option in words to guess and questions
 
 #initialize the variables and arrays we need
 declare -a word
@@ -28,6 +30,10 @@ alpha=("a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "
 char=0
 idioma=0
 resp_idioma=0
+RED="\033[0;31m"
+GREEN="\033[0;32m"
+YELLOW="\033[1;33m"
+NC="\033[0m" #No color
 
 #this function reads the list of words from the dict.dat file and
 #put them into the word array
@@ -39,8 +45,8 @@ while [[ $resp_idioma != 1 && $resp_idioma != 2 ]]
     do
         # Borra pantalla
         printf "\e[2J\e[H"
-        echo -ne "¿Quieres una palabra en español (es) o inglés (en)? \n"
-        echo -n "es = 1 / en = 2: "
+        echo -ne "¿Español (Es) / English (En)? \n"
+        echo -n "Es = 1 / En = 2: "
         read resp_idioma
         char=$resp_idioma
     done
@@ -117,6 +123,7 @@ function guess
 function gallows 
 {
 clear
+printf "$GREEN"
 echo "          __________"
 echo "         |         |"
 echo "         |         |"
@@ -131,10 +138,12 @@ echo "                   |"
 echo "                   |"
 echo "      _____________|_____"
 echo "                           "
+printf "$NC"
 }
 function gallows_head 
 {
 clear
+printf "$GREEN"
 echo "          __________"
 echo "         |         |"
 echo "         |         |"
@@ -149,9 +158,11 @@ echo "                   |"
 echo "                   |"
 echo "      _____________|_____"
 echo "                           "
+printf "$NC"
 }
 function gallows_body {
 clear
+printf "$GREEN"
 echo "          __________"
 echo "         |         |"
 echo "         |         |"
@@ -166,9 +177,11 @@ echo "                   |"
 echo "                   |"
 echo "      _____________|_____"
 echo "                           "
+printf "$NC"
 }
 function gallows_arm1 {
 clear
+printf "$YELLOW"
 echo "          __________"
 echo "         |         |"
 echo "         |         |"
@@ -183,9 +196,11 @@ echo "                   |"
 echo "                   |"
 echo "      _____________|_____"
 echo "                           "
+printf "$NC"
 }
 function gallows_arm2 {
 clear
+printf "$YELLOW"
 echo "          __________"
 echo "         |         |"
 echo "         |         |"
@@ -200,9 +215,11 @@ echo "                   |"
 echo "                   |"
 echo "      _____________|_____"
 echo "                           "
+printf "$NC"
 }
 function gallows_leg1 {
 clear
+printf "$RED"
 echo "          __________"
 echo "         |         |"
 echo "         |         |"
@@ -217,9 +234,11 @@ echo "       /           |"
 echo "                   |"
 echo "      _____________|_____"
 echo "                           "
+printf "$NC"
 }
 function gallows_leg2 {
 clear
+printf "$RED"
 echo "          __________"
 echo "         |         |"
 echo "         |         |"
@@ -234,6 +253,7 @@ echo "       /   \       |"
 echo "                   |"
 echo "      _____________|_____"
 echo "                           "
+printf "$NC"
 }
 
 #this function prints the win screen
