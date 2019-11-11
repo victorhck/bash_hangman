@@ -26,6 +26,8 @@ wordindex=0
 correct=0
 alpha=("a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z")
 char=0
+idioma=0
+resp_idioma=0
 
 #this function reads the list of words from the dict.dat file and
 #put them into the word array
@@ -33,7 +35,21 @@ function readfile
 {
 
 exec 3<&0
-exec 0< dict.dat
+while [[ $resp_idioma != 1 && $resp_idioma != 2 ]]
+    do
+        # Borra pantalla
+        printf "\e[2J\e[H"
+        echo -ne "¿Quieres una palabra en español (es) o inglés (en)? \n"
+        echo -n "es = 1 / en = 2: "
+        read resp_idioma
+        char=$resp_idioma
+    done
+if [ ${#resp_idioma} -eq "1" ]
+    then
+        exec 0< dict_es.dat
+    else
+        exec 0< dict_en.dat
+fi
 while read LINE
 do
 
@@ -65,7 +81,13 @@ function guess
 {
 	j=0
 	correct=0
-	echo -n "Guess a letter: "
+
+    if [ ${#resp_idioma} -eq "1" ]
+        then
+            echo -n "Adivina una letra: "
+        else
+            echo -n "Guess a letter: "
+    fi
 	read guess
 	char=$guess
 	if [ ${#guess} -eq "1" ]
@@ -347,7 +369,7 @@ do
 
 	if [ "${numletter}" == "${#word[${word_index}]}" ]
 	then
-	clear
+	#clear
 	win;
 	gameover=1
 	fi
