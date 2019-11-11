@@ -273,8 +273,12 @@ echo "La palabra era: ${word[$word_index]}"
 #this function prints the guessed letters to the screen and
 #underscores for letters that haven't been guessed
 function print_alpha {
-	echo -e "\nLetters Guessed:"
-	
+    if [ ${resp_idioma} -eq "1" ]
+        then
+            echo -e "\nLetras ya dichas:"
+        else
+            echo -e "\nLetters Guessed:"
+    fi
 	e=0
 	while [ ! "$e" == "26" ]
 	do
@@ -303,7 +307,12 @@ function print_alpha {
 #a function to print the correctly guessed letters of the word to the
 #screen or else an underscore for letters no yet guessed
 function print_word {
-	echo -ne "\nWord: "
+    if [ ${resp_idioma} -eq "1" ]
+        then
+            echo -ne "\nPalabra: "
+        else
+            echo -ne "\nWord: "
+    fi
 	t=0
 	while [ ! $t == ${#word[${word_index}]} ]
 	do
