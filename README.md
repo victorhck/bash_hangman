@@ -1,6 +1,6 @@
 ![](colgado.png)
 
-# Juego del _colgado_ en BASH
+# Juego de [_El ahorcado_](https://es.wikipedia.org/wiki/Ahorcado_(juego)) en BASH
 
 Este es el clásico juego del colgado escrito en Bash.
 
