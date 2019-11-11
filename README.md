@@ -1,3 +1,29 @@
+![](colgado.png)
+
+# Juego del _colgado_ en BASH
+
+Este es el clásico juego del colgado escrito en Bash.
+
+Simplemente descarga o clona el repositorio, y ejecuta el archivo:
+
+> ./hangman
+
+Y podrás escoger entre jugar en inglés (y adivinar palabras en inglés del archivo dict_en.dat) o en español (con palabras en español de dict_es.dat).
+
+La cuestión es adivinar la palabra elegida de manera aleatoria diciendo letras. Por cada letra acertada, esta se mostrará en la palabra. Por cada letra equivocada, se añadirá una parte _del colgado_.
+
+El objetivo es adivinar la palabra antes de que se acaben las opciones... ¿Te atreves al reto?
+
+En esta versión actualizada, además de añadir texto y palabras en español, también he hecho algunas otras mejoras visuales.
+
+El aprender a programar en Bash como sinónimo de entretenimiento, eso es ser muy __geek__
+
+¡Disfruta!
+
+---
+
+En este _fork_ he mejorado el juego, añadiendo 
+
 # Hangman in BASH
 A basic UNIX terminal based hangman game written in Bash.
 
