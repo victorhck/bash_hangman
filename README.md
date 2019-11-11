@@ -22,8 +22,6 @@ El aprender a programar en Bash como sinónimo de entretenimiento, eso es ser mu
 
 ---
 
-En este _fork_ he mejorado el juego, añadiendo 
-
 # Hangman in BASH
 A basic UNIX terminal based hangman game written in Bash.
 
