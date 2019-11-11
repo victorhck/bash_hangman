@@ -44,7 +44,7 @@ while [[ $resp_idioma != 1 && $resp_idioma != 2 ]]
         read resp_idioma
         char=$resp_idioma
     done
-if [ ${#resp_idioma} -eq "1" ]
+if [ ${resp_idioma} -eq "1" ]
     then
         exec 0< dict_es.dat
     else
@@ -82,7 +82,7 @@ function guess
 	j=0
 	correct=0
 
-    if [ ${#resp_idioma} -eq "1" ]
+    if [ ${resp_idioma} -eq "1" ]
         then
             echo -n "Adivina una letra: "
         else
@@ -237,7 +237,17 @@ echo "                           "
 }
 
 #this function prints the win screen
-function win {
+function win_es {
+echo " ____  _              _ "
+echo "| __ )(_) ___ _ __   | |"
+echo "|  _ || |/ _ | '_  | | |"
+echo "| |_) | || __/ | | | |_|"
+echo "|____/|_||___|_| |_| (_)"
+echo -en "\n\n\n"
+}
+
+#this function prints the win screen
+function win_en {
 echo "*     *  *******  *    *  * "
 echo "*     *     *     **   *  * "
 echo "*     *     *     * *  *  * "
@@ -247,10 +257,17 @@ echo "  * *    *******  *    *  * "
 echo -en "\n\n\n"
 }
 
+
 #this function prints the lose screen
-function lose {
+function lose_en {
 echo "lose..."
-echo "The word was ${word[$word_index]}"
+echo "The word was: ${word[$word_index]}"
+}
+
+#this function prints the lose screen
+function lose_es {
+echo "Perdiste..."
+echo "La palabra era: ${word[$word_index]}"
 }
 
 #this function prints the guessed letters to the screen and
@@ -370,20 +387,36 @@ do
 	if [ "${numletter}" == "${#word[${word_index}]}" ]
 	then
 	#clear
-	win;
+    if [ ${resp_idioma} -eq "1" ]
+        then
+            win_es;
+        else
+            win_en;
+    fi
 	gameover=1
 	fi
 	if [ $incorrect == "6" ]
 	then
-	lose;
+
+    if [ ${resp_idioma} -eq "1" ]
+        then
+            lose_es;
+        else
+            lose_en;
+    fi
 	gameover=1
 	fi
 
 	if [ "$gameover" == "1" ] 
 	then
-		echo -e "\n\n Play again? (y/n)"
+    if [ ${resp_idioma} -eq "1" ]
+        then
+            echo -e "\n\n ¿Jugar de nuevo? (s/n)"
+        else
+            echo -e "\n\n Play again? (y/n)"
+        fi
 		read answer
-		if [ "$answer" == "y" ]
+		if [ $answer == 'y' ] || [ $answer == 's' ]
 		then
 			gameover=0
 		fi
